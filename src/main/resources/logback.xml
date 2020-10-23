@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="2 seconds">
+<property name="logging.log_dir" value="./logs"/>
+<property name="infoLogName" value="mylog"/>
+	<appender name="dailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${logging.log_dir}/${infoLogName}.log</File>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<FileNamePattern>${logging.log_dir}/${infoLogName}.%d{yyyy-MM-dd}.log</FileNamePattern>
+      		<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>%d [%thread] %-5level %logger{35} [%file:%line] - %msg %n
+			</Pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.guru" level="DEBUG">
+		<appender-ref ref="dailyRollingFileAppender" />
+	</logger>
+
+	<root level="error">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
