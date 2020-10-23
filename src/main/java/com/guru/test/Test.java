@@ -3,7 +3,7 @@ package com.guru.test;
 import com.google.gson.Gson;
 import com.guru.entity.Courses;
 
-public class Test {
+public class Test { 
 	public static void main(String[] args) {
 		Gson g = new Gson();
 		
